@@ -2,14 +2,19 @@
 
 namespace Unit
 {
-    class Unit
+    class Enemy
     {
-        /// <summary>
-        /// Nombre de la unidad
-        /// </summary>
-        string name;
+        string name;    //Nombre de la unidad
         char ID;    //Representación en pantalla
         int hp;
+
+        //Stats
+        int strength;
+        int intelligence;
+        int physicalResistance;
+        int magicalResistance;
+
+
         //Resistencias del enemigo
         ResistanceType[] resistances = new ResistanceType[10];
 
@@ -39,11 +44,17 @@ namespace Unit
         /// <param name="resistanceValues">
         /// Vector que contiene todas lsa resistencias a asignar (excluyendo allMighty) en el siguiente orden:
         /// blunt, slashing, fire, ice, wind, earth, shock, dark, light</param>
-        public Unit(string unitName, char unitID, int unitHP, int [] resistanceValues)
+        public Enemy(string unitName, char unitID, int unitHP, int unitStrength, int unitIntelligence,
+            int unitPhysicalResistance, int unitMagicalResistance, int [] resistanceValues)
         {
             name = unitName;
             ID = unitID;
             hp = unitHP;
+            strength = unitStrength;
+            intelligence = unitIntelligence;
+            physicalResistance = unitPhysicalResistance;
+            magicalResistance = unitMagicalResistance;
+            
             ChangeResistances(resistanceValues);
 
             //Asignamos aparte la resistencia a allMighty que siempre es 0
@@ -74,6 +85,31 @@ namespace Unit
                 case TypeOfResistance.allMighty:
                     hp -= damageTaken;
                     break;
+                case TypeOfResistance.blunt:
+                    if (resistances[GetResistance(element)].quantity <= 100)
+                    {
+                        damageTaken /= resistances[GetResistance(element)].quantity;
+                        hp -= (damageTaken - physicalResistance);
+                    }
+                    else
+                    {
+                        hp += damageTaken / (resistances[GetResistance(element)].quantity - 100);
+                        
+                    }
+                    break;
+                case TypeOfResistance.slashing:
+                    if (resistances[GetResistance(element)].quantity <= 100)
+                    {
+                        damageTaken /= resistances[GetResistance(element)].quantity;
+                        hp -= (damageTaken - magicalResistance);
+                    }
+                    else
+                    {
+                        hp += damageTaken / (resistances[GetResistance(element)].quantity - 100);
+
+                    }
+                    break;
+
                 default:
                     if (resistances[GetResistance(element)].quantity <= 100)
                     {
@@ -99,6 +135,21 @@ namespace Unit
                 throw new Exception("No se ha encontrado la resistencia");
             }
             return contador;
+        }
+
+        public int GetHP()
+        {
+            return hp;
+        }
+
+        public int GetStrength()
+        {
+            return strength;
+        }
+
+        public int GetIntelligence()
+        {
+            return intelligence;
         }
     }
 }
