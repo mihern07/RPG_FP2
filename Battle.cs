@@ -7,6 +7,8 @@ namespace RPG
     {
         static Player player;
         static Enemy[] enemies;
+        static String roundLog;
+        static String damageLog;
         static bool HandleInput(string input)
         {
             bool canDo = false;
@@ -218,11 +220,13 @@ namespace RPG
         {
             if (playerIsAtaquer)
             {
-                enemy.TakeDamage(player.GetStrength(), Enemy.TypeOfResistance.blunt);
+                enemy.TakeDamage(player.GetStrength(), Enemy.TypeOfResistance.blunt, out damageLog);
+                roundLog += damageLog;
             }
             else
             {
-                player.TakeDamage(enemy.GetStrength(), Player.TypeOfResistance.blunt);
+                player.TakeDamage(enemy.GetStrength(), Player.TypeOfResistance.blunt, out damageLog);
+                roundLog += damageLog;
             }
         }
 
@@ -230,11 +234,13 @@ namespace RPG
         {
             if (playerIsAtaquer)
             {
-                enemy.TakeDamage(player.GetStrength(), Enemy.TypeOfResistance.slashing);
+                enemy.TakeDamage(player.GetStrength(), Enemy.TypeOfResistance.slashing, out damageLog);
+                roundLog += damageLog;
             }
             else
             {
-                player.TakeDamage(enemy.GetStrength(), Player.TypeOfResistance.slashing);
+                player.TakeDamage(enemy.GetStrength(), Player.TypeOfResistance.slashing, out damageLog);
+                roundLog += damageLog;
             }
         }
 
@@ -242,11 +248,13 @@ namespace RPG
         {
             if (playerIsAtaquer)
             {
-                enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.fire);
+                enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.fire, out damageLog);
+                roundLog += damageLog;
             }
             else
             {
-                player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.fire);
+                player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.fire, out damageLog);
+                roundLog += damageLog;
             }
         }
 
@@ -254,11 +262,13 @@ namespace RPG
         {
             if (playerIsAtaquer)
             {
-                enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.ice);
+                enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.ice, out damageLog);
+                roundLog += damageLog;
             }
             else
             {
-                player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.ice);
+                player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.ice, out damageLog);
+                roundLog += damageLog;
             }
         }
 
@@ -266,11 +276,13 @@ namespace RPG
         {
             if (playerIsAtaquer)
             {
-                enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.wind);
+                enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.wind, out damageLog);
+                roundLog += damageLog;
             }
             else
             {
-                player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.wind);
+                player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.wind, out damageLog);
+                roundLog += damageLog;
             }
         }
 
@@ -278,11 +290,13 @@ namespace RPG
         {
             if (playerIsAtaquer)
             {
-                enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.earth);
+                enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.earth, out damageLog);
+                roundLog += damageLog;
             }
             else
             {
-                player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.earth);
+                player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.earth, out damageLog);
+                roundLog += damageLog;
             }
         }
 
@@ -290,11 +304,13 @@ namespace RPG
         {
             if (playerIsAtaquer)
             {
-                enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.shock);
+                enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.shock, out damageLog);
+                roundLog += damageLog;
             }
             else
             {
-                player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.shock);
+                player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.shock, out damageLog);
+                roundLog += damageLog;
             }
         }
 
@@ -302,11 +318,13 @@ namespace RPG
         {
             if (playerIsAtaquer)
             {
-                enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.dark);
+                enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.dark, out damageLog);
+                roundLog += damageLog;
             }
             else
             {
-                player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.dark);
+                player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.dark, out damageLog);
+                roundLog += damageLog;
             }
         }
 
@@ -314,11 +332,13 @@ namespace RPG
         {
             if (playerIsAtaquer)
             {
-                enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.light);
+                enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.light, out damageLog);
+                roundLog += damageLog;
             }
             else
             {
-                player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.light);
+                player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.light, out damageLog);
+                roundLog += damageLog;
             }
         }
 
@@ -326,18 +346,20 @@ namespace RPG
         {
             if (playerIsAtaquer)
             {
-                enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.allMighty);
+                enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.allMighty, out damageLog);
+                roundLog += damageLog;
             }
             else
             {
-                player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.allMighty);
+                player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.allMighty, out damageLog);
+                roundLog += damageLog;
             }
         }
 
         /// <summary>
         /// Renderiza el estado actual del juego
         /// </summary>
-        static void Render(String roundLog)
+        static void Render()
         {
             Console.Clear();
 
@@ -368,6 +390,7 @@ namespace RPG
             Console.WriteLine();
 
             //Escribimos el log
+            Console.WriteLine();
             Console.WriteLine(roundLog);
             Console.WriteLine();
 
@@ -379,7 +402,7 @@ namespace RPG
         {
             
             enemies = new Enemy[3];
-            String roundLog = "";    //Aquí se registra todo lo sucedido en una ronda de combate
+            roundLog = "";    //Aquí se registra todo lo sucedido en una ronda de combate
             String input;
 
             int[] tempResistances = new int[10];
@@ -413,7 +436,9 @@ namespace RPG
             while (true)
             {
                 //Dibujado
-                Render(roundLog);
+                Render();
+
+                roundLog = "";
 
                 //Control del input
                 input = Console.ReadLine();

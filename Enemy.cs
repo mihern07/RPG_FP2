@@ -80,12 +80,14 @@ namespace Unit
             }
         }
 
-        public void TakeDamage(int damageTaken, TypeOfResistance element)
+        public void TakeDamage(int damageTaken, TypeOfResistance element, out string damageLog)
         {
+            damageLog = "";
             switch (element)
             {
                 case TypeOfResistance.allMighty:
                     hp -= damageTaken;
+                    damageLog = (name + " takes " + damageTaken + " " + element + " damage\n");
                     break;
                 case TypeOfResistance.blunt:
                     int bluntResistanceQuantity = resistances[GetResistance(element)].quantity;
@@ -93,7 +95,9 @@ namespace Unit
                     {
                         if (bluntResistanceQuantity != 0)
                             damageTaken /= bluntResistanceQuantity;
-                        hp -= (damageTaken - physicalResistance);
+                        damageTaken -= physicalResistance;
+                        hp -= damageTaken;
+                        damageLog = (name + " takes " + damageTaken + " " + element + " damage\n");
                     }
                     else
                     {
@@ -101,6 +105,7 @@ namespace Unit
                         if (bluntDamageRecovery != 0)
                             damageTaken /= bluntDamageRecovery;
                         hp += damageTaken;
+                        damageLog = (name + " heals " + damageTaken + " " + element + " damage\n");
                     }
                     break;
                 case TypeOfResistance.slashing:
@@ -109,7 +114,9 @@ namespace Unit
                     {
                         if (slashingResistanceQuantity!=0)
                             damageTaken /= slashingResistanceQuantity;
-                        hp -= (damageTaken - magicalResistance);
+                        damageTaken -= magicalResistance;
+                        hp -= damageTaken;
+                        damageLog = (name + " takes " + damageTaken + " " + element + " damage\n");
                     }
                     else
                     {
@@ -117,6 +124,7 @@ namespace Unit
                         if (slashingDamageRecovery != 0)
                             damageTaken /= slashingDamageRecovery;
                         hp += damageTaken;
+                        damageLog = (name + " heals " + damageTaken + " " + element + " damage\n");
                     }
                     break;
 
@@ -127,6 +135,7 @@ namespace Unit
                         if (elementResistanceQuantity != 0)
                             damageTaken /= elementResistanceQuantity;
                         hp -= damageTaken;
+                        damageLog = (name + " takes " + damageTaken + " " + element + " damage\n");
                     }
                     else
                     {
@@ -134,6 +143,7 @@ namespace Unit
                         if (elementDamageRecovery != 0)
                             damageTaken /= elementDamageRecovery;
                         hp += damageTaken;
+                        damageLog = (name + " heals " + damageTaken + " " + element + " damage\n");
                     }
                     break;
             }
