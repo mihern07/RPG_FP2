@@ -7,6 +7,7 @@ namespace Unit
         string name;    //Nombre de la unidad
         char ID;    //Representación en pantalla
         int hp;
+        int maxHP;
 
         //Stats
         int strength;
@@ -49,6 +50,7 @@ namespace Unit
         {
             name = unitName;
             ID = unitID;
+            maxHP = unitHP;
             hp = unitHP;
             strength = unitStrength;
             intelligence = unitIntelligence;
@@ -86,38 +88,52 @@ namespace Unit
                     hp -= damageTaken;
                     break;
                 case TypeOfResistance.blunt:
-                    if (resistances[GetResistance(element)].quantity <= 100)
+                    int bluntResistanceQuantity = resistances[GetResistance(element)].quantity;
+                    if (bluntResistanceQuantity <= 100)
                     {
-                        damageTaken /= resistances[GetResistance(element)].quantity;
+                        if (bluntResistanceQuantity != 0)
+                            damageTaken /= bluntResistanceQuantity;
                         hp -= (damageTaken - physicalResistance);
                     }
                     else
                     {
-                        hp += damageTaken / (resistances[GetResistance(element)].quantity - 100);
-                        
+                        int bluntDamageRecovery = bluntResistanceQuantity - 100;
+                        if (bluntDamageRecovery != 0)
+                            damageTaken /= bluntDamageRecovery;
+                        hp += damageTaken;
                     }
                     break;
                 case TypeOfResistance.slashing:
-                    if (resistances[GetResistance(element)].quantity <= 100)
+                    int slashingResistanceQuantity = resistances[GetResistance(element)].quantity;
+                    if (slashingResistanceQuantity <= 100)
                     {
-                        damageTaken /= resistances[GetResistance(element)].quantity;
+                        if (slashingResistanceQuantity!=0)
+                            damageTaken /= slashingResistanceQuantity;
                         hp -= (damageTaken - magicalResistance);
                     }
                     else
                     {
-                        hp += damageTaken / (resistances[GetResistance(element)].quantity - 100);
-
+                        int slashingDamageRecovery = slashingResistanceQuantity - 100;
+                        if (slashingDamageRecovery != 0)
+                            damageTaken /= slashingDamageRecovery;
+                        hp += damageTaken;
                     }
                     break;
 
                 default:
-                    if (resistances[GetResistance(element)].quantity <= 100)
+                    int elementResistanceQuantity = resistances[GetResistance(element)].quantity;
+                    if (elementResistanceQuantity <= 100)
                     {
-                        hp -= damageTaken / resistances[GetResistance(element)].quantity;
+                        if (elementResistanceQuantity != 0)
+                            damageTaken /= elementResistanceQuantity;
+                        hp -= damageTaken;
                     }
                     else
                     {
-                        hp += damageTaken / (resistances[GetResistance(element)].quantity - 100);
+                        int elementDamageRecovery = elementResistanceQuantity - 100;
+                        if (elementDamageRecovery != 0)
+                            damageTaken /= elementDamageRecovery;
+                        hp += damageTaken;
                     }
                     break;
             }
@@ -137,9 +153,19 @@ namespace Unit
             return contador;
         }
 
+        public char GetID()
+        {
+            return ID;
+        }
+
         public int GetHP()
         {
             return hp;
+        }
+
+        public int GetMaxHP()
+        {
+            return maxHP;
         }
 
         public int GetStrength()

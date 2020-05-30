@@ -1,12 +1,220 @@
 ﻿using System;
 using Unit;
-using Skills;
 
 namespace RPG
 {
     class Battle
     {
-        public void Blunt(Player player, Enemy enemy, bool playerIsAtaquer)
+        static Player player;
+        static Enemy[] enemies;
+        static bool HandleInput(string input)
+        {
+            bool canDo = false;
+            string[] separator = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            switch (separator[0])
+            {
+                case "blunt":
+                case "Blunt":
+                    try
+                    {
+                        int enemyNumber = SearchEnemy(separator[1]);
+                        if (enemyNumber != -1)
+                        {
+                            Blunt(enemies[enemyNumber], true);
+                            canDo = true;
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Enemy not specified");
+                    }
+                    break;
+
+                case "slash":
+                case "Slash":
+                    try
+                    {
+                        int enemyNumber = SearchEnemy(separator[1]);
+                        if (enemyNumber != -1)
+                        {
+                            Slash(enemies[enemyNumber], true);
+                            canDo = true;
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Enemy not specified");
+                    }
+                    break;
+
+                case "fireI":
+                case "FireI":
+                    try
+                    {
+                        int enemyNumber = SearchEnemy(separator[1]);
+                        if (enemyNumber != -1)
+                        {
+                            FireI(enemies[enemyNumber], true);
+                            canDo = true;
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Enemy not specified");
+                    }
+                    break;
+
+                case "iceI":
+                case "IceI":
+                    try
+                    {
+                        int enemyNumber = SearchEnemy(separator[1]);
+                        if (enemyNumber != -1)
+                        {
+                            IceI(enemies[enemyNumber], true);
+                            canDo = true;
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Enemy not specified");
+                    }
+                    break;
+
+                case "windI":
+                case "WindI":
+                    try
+                    {
+                        int enemyNumber = SearchEnemy(separator[1]);
+                        if (enemyNumber != -1)
+                        {
+                            WindI(enemies[enemyNumber], true);
+                            canDo = true;
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Enemy not specified");
+                    }
+                    break;
+
+                case "earthI":
+                case "EarthI":
+                    try
+                    {
+                        int enemyNumber = SearchEnemy(separator[1]);
+                        if (enemyNumber != -1)
+                        {
+                            EarthI(enemies[enemyNumber], true);
+                            canDo = true;
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Enemy not specified");
+                    }
+                    break;
+
+                case "shockI":
+                case "ShockI":
+                    try
+                    {
+                        int enemyNumber = SearchEnemy(separator[1]);
+                        if (enemyNumber != -1)
+                        {
+                            ShockI(enemies[enemyNumber], true);
+                            canDo = true;
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Enemy not specified");
+                    }
+                    break;
+
+                case "darkI":
+                case "DarkI":
+                    try
+                    {
+                        int enemyNumber = SearchEnemy(separator[1]);
+                        if (enemyNumber != -1)
+                        {
+                            DarkI(enemies[enemyNumber], true);
+                            canDo = true;
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Enemy not specified");
+                    }
+                    break;
+
+                case "lightI":
+                case "LightI":
+                    try
+                    {
+                        int enemyNumber = SearchEnemy(separator[1]);
+                        if (enemyNumber != -1)
+                        {
+                            LightI(enemies[enemyNumber], true);
+                            canDo = true;
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Enemy not specified");
+                    }
+                    break;
+
+                case "allmightyI":
+                case "allMightyI":
+                case "AllMightyI":
+                    try
+                    {
+                        int enemyNumber = SearchEnemy(separator[1]);
+                        if (enemyNumber != -1)
+                        {
+                            AllMightyI(enemies[enemyNumber], true);
+                            canDo = true;
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Enemy not specified");
+                    }
+                    break;
+
+
+                default:
+                    Console.WriteLine("Command not valid, type help for a list of valid commands");
+                    break;
+            }
+            
+            return canDo;
+        }
+
+        static int SearchEnemy(string ID)
+        {
+            try
+            {
+                int contador = 0;
+                while (contador < enemies.Length && !(ID == enemies[contador].GetID() + ""))
+                {
+                    contador++;
+                }
+                if (contador >= enemies.Length)
+                {
+                    throw new Exception("Specified enemy not found");
+                }
+                return contador;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return -1;
+            }
+        }
+        static void Blunt(Enemy enemy, bool playerIsAtaquer)
         {
             if (playerIsAtaquer)
             {
@@ -18,7 +226,7 @@ namespace RPG
             }
         }
 
-        public void Slash(Player player, Enemy enemy, bool playerIsAtaquer)
+        static void Slash(Enemy enemy, bool playerIsAtaquer)
         {
             if (playerIsAtaquer)
             {
@@ -30,7 +238,7 @@ namespace RPG
             }
         }
 
-        public void FireI(Player player, Enemy enemy, bool playerIsAtaquer)
+        static void FireI(Enemy enemy, bool playerIsAtaquer)
         {
             if (playerIsAtaquer)
             {
@@ -42,7 +250,7 @@ namespace RPG
             }
         }
 
-        public void IceI(Player player, Enemy enemy, bool playerIsAtaquer)
+        static void IceI(Enemy enemy, bool playerIsAtaquer)
         {
             if (playerIsAtaquer)
             {
@@ -54,7 +262,7 @@ namespace RPG
             }
         }
 
-        public void WindI(Player player, Enemy enemy, bool playerIsAtaquer)
+        static void WindI(Enemy enemy, bool playerIsAtaquer)
         {
             if (playerIsAtaquer)
             {
@@ -66,7 +274,7 @@ namespace RPG
             }
         }
 
-        public void EarthI(Player player, Enemy enemy, bool playerIsAtaquer)
+        static void EarthI(Enemy enemy, bool playerIsAtaquer)
         {
             if (playerIsAtaquer)
             {
@@ -78,7 +286,7 @@ namespace RPG
             }
         }
 
-        public void ShockI(Player player, Enemy enemy, bool playerIsAtaquer)
+        static void ShockI(Enemy enemy, bool playerIsAtaquer)
         {
             if (playerIsAtaquer)
             {
@@ -90,7 +298,7 @@ namespace RPG
             }
         }
 
-        public void DarkI(Player player, Enemy enemy, bool playerIsAtaquer)
+        static void DarkI(Enemy enemy, bool playerIsAtaquer)
         {
             if (playerIsAtaquer)
             {
@@ -102,7 +310,7 @@ namespace RPG
             }
         }
 
-        public void LightI(Player player, Enemy enemy, bool playerIsAtaquer)
+        static void LightI(Enemy enemy, bool playerIsAtaquer)
         {
             if (playerIsAtaquer)
             {
@@ -114,7 +322,7 @@ namespace RPG
             }
         }
 
-        public void AllMightyI(Player player, Enemy enemy, bool playerIsAtaquer)
+        static void AllMightyI(Enemy enemy, bool playerIsAtaquer)
         {
             if (playerIsAtaquer)
             {
@@ -126,9 +334,98 @@ namespace RPG
             }
         }
 
+        /// <summary>
+        /// Renderiza el estado actual del juego
+        /// </summary>
+        static void Render(String roundLog)
+        {
+            Console.Clear();
+
+            //Dibujamos los enemigos
+            Console.Write("      ");
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                Console.Write(enemies[i].GetID() + "          ");
+            }
+            Console.WriteLine();
+            Console.Write("   ");
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                Console.Write(enemies[i].GetHP() + "/" + enemies[i].GetMaxHP() + "HP    ");
+            }
+
+
+            Console.WriteLine();
+            Console.WriteLine();
+
+
+            //Dibujamos al jugador
+            Console.Write("      ");
+            Console.Write(player.GetID());
+            Console.WriteLine();
+            Console.Write("   ");
+            Console.Write(player.GetHP() + "/" + player.GetMaxHP() + "HP");
+            Console.WriteLine();
+
+            //Escribimos el log
+            Console.WriteLine(roundLog);
+            Console.WriteLine();
+
+            //Escribimos el prompt
+            Console.Write(" > ");
+        }
+
         static void Main(string[] args)
         {
+            
+            enemies = new Enemy[3];
+            String roundLog = "";    //Aquí se registra todo lo sucedido en una ronda de combate
+            String input;
 
+            int[] tempResistances = new int[10];
+            tempResistances[0] = 0;
+            tempResistances[1] = 0;
+            tempResistances[2] = 0;
+            tempResistances[3] = 0;
+            tempResistances[4] = 0;
+            tempResistances[5] = 0;
+            tempResistances[6] = 0;
+            tempResistances[7] = 0;
+            tempResistances[8] = 0;
+            tempResistances[9] = 0;
+            player = new Player("TestPlayer", 'P', 30, 8, 10, 2, 3, tempResistances);
+
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                tempResistances[0] = 0;
+                tempResistances[1] = 0;
+                tempResistances[2] = 0;
+                tempResistances[3] = 0;
+                tempResistances[4] = 0;
+                tempResistances[5] = 0;
+                tempResistances[6] = 0;
+                tempResistances[7] = 0;
+                tempResistances[8] = 0;
+                tempResistances[9] = 0;
+                enemies[i] = new Enemy("Enemy" + i, 'E', 60, 8, 6, 2, 3, tempResistances);
+            }
+
+            while (true)
+            {
+                //Dibujado
+                Render(roundLog);
+
+                //Control del input
+                input = Console.ReadLine();
+                while (!HandleInput(input))
+                {
+                    Console.Write(" > ");
+                    input = Console.ReadLine();
+                }
+            }
+            
+
+            Console.ReadLine();
         }
     }
 }
