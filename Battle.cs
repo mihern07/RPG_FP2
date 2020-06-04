@@ -1,5 +1,6 @@
 ﻿using System;
 using Unit;
+using System.IO;
 
 namespace RPG
 {
@@ -12,185 +13,204 @@ namespace RPG
         static bool HandleInput(string input)
         {
             bool canDo = false;
-            string[] separator = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            switch (separator[0])
+            if (input != "")
             {
-                case "blunt":
-                case "Blunt":
-                    try
-                    {
-                        int enemyNumber = SearchEnemy(separator[1]);
-                        if (enemyNumber != -1)
+                string[] separator = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                switch (separator[0])
+                {
+                    case "blunt":
+                    case "Blunt":
+                        try
                         {
-                            Blunt(enemies[enemyNumber], true);
-                            canDo = true;
+                            int enemyNumber = SearchEnemy(separator[1]);
+                            if (enemyNumber != -1)
+                            {
+                                Blunt(enemies[enemyNumber], true);
+                                canDo = true;
+                            }
                         }
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Enemy not specified");
-                    }
-                    break;
-
-                case "slash":
-                case "Slash":
-                    try
-                    {
-                        int enemyNumber = SearchEnemy(separator[1]);
-                        if (enemyNumber != -1)
+                        catch
                         {
-                            Slash(enemies[enemyNumber], true);
-                            canDo = true;
+                            Console.WriteLine("Enemy not specified");
                         }
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Enemy not specified");
-                    }
-                    break;
+                        break;
 
-                case "fireI":
-                case "FireI":
-                    try
-                    {
-                        int enemyNumber = SearchEnemy(separator[1]);
-                        if (enemyNumber != -1)
+                    case "slash":
+                    case "Slash":
+                        try
                         {
-                            FireI(enemies[enemyNumber], true);
-                            canDo = true;
+                            int enemyNumber = SearchEnemy(separator[1]);
+                            if (enemyNumber != -1)
+                            {
+                                Slash(enemies[enemyNumber], true);
+                                canDo = true;
+                            }
                         }
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Enemy not specified");
-                    }
-                    break;
-
-                case "iceI":
-                case "IceI":
-                    try
-                    {
-                        int enemyNumber = SearchEnemy(separator[1]);
-                        if (enemyNumber != -1)
+                        catch
                         {
-                            IceI(enemies[enemyNumber], true);
-                            canDo = true;
+                            Console.WriteLine("Enemy not specified");
                         }
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Enemy not specified");
-                    }
-                    break;
+                        break;
 
-                case "windI":
-                case "WindI":
-                    try
-                    {
-                        int enemyNumber = SearchEnemy(separator[1]);
-                        if (enemyNumber != -1)
+                    case "fireI":
+                    case "FireI":
+                        try
                         {
-                            WindI(enemies[enemyNumber], true);
-                            canDo = true;
+                            int enemyNumber = SearchEnemy(separator[1]);
+                            if (enemyNumber != -1)
+                            {
+                                FireI(enemies[enemyNumber], true);
+                                canDo = true;
+                            }
                         }
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Enemy not specified");
-                    }
-                    break;
-
-                case "earthI":
-                case "EarthI":
-                    try
-                    {
-                        int enemyNumber = SearchEnemy(separator[1]);
-                        if (enemyNumber != -1)
+                        catch
                         {
-                            EarthI(enemies[enemyNumber], true);
-                            canDo = true;
+                            Console.WriteLine("Enemy not specified");
                         }
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Enemy not specified");
-                    }
-                    break;
+                        break;
 
-                case "shockI":
-                case "ShockI":
-                    try
-                    {
-                        int enemyNumber = SearchEnemy(separator[1]);
-                        if (enemyNumber != -1)
+                    case "iceI":
+                    case "IceI":
+                        try
                         {
-                            ShockI(enemies[enemyNumber], true);
-                            canDo = true;
+                            int enemyNumber = SearchEnemy(separator[1]);
+                            if (enemyNumber != -1)
+                            {
+                                IceI(enemies[enemyNumber], true);
+                                canDo = true;
+                            }
                         }
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Enemy not specified");
-                    }
-                    break;
-
-                case "darkI":
-                case "DarkI":
-                    try
-                    {
-                        int enemyNumber = SearchEnemy(separator[1]);
-                        if (enemyNumber != -1)
+                        catch
                         {
-                            DarkI(enemies[enemyNumber], true);
-                            canDo = true;
+                            Console.WriteLine("Enemy not specified");
                         }
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Enemy not specified");
-                    }
-                    break;
+                        break;
 
-                case "lightI":
-                case "LightI":
-                    try
-                    {
-                        int enemyNumber = SearchEnemy(separator[1]);
-                        if (enemyNumber != -1)
+                    case "windI":
+                    case "WindI":
+                        try
                         {
-                            LightI(enemies[enemyNumber], true);
-                            canDo = true;
+                            int enemyNumber = SearchEnemy(separator[1]);
+                            if (enemyNumber != -1)
+                            {
+                                WindI(enemies[enemyNumber], true);
+                                canDo = true;
+                            }
                         }
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Enemy not specified");
-                    }
-                    break;
-
-                case "allmightyI":
-                case "allMightyI":
-                case "AllMightyI":
-                    try
-                    {
-                        int enemyNumber = SearchEnemy(separator[1]);
-                        if (enemyNumber != -1)
+                        catch
                         {
-                            AllMightyI(enemies[enemyNumber], true);
-                            canDo = true;
+                            Console.WriteLine("Enemy not specified");
                         }
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Enemy not specified");
-                    }
-                    break;
+                        break;
 
+                    case "earthI":
+                    case "EarthI":
+                        try
+                        {
+                            int enemyNumber = SearchEnemy(separator[1]);
+                            if (enemyNumber != -1)
+                            {
+                                EarthI(enemies[enemyNumber], true);
+                                canDo = true;
+                            }
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Enemy not specified");
+                        }
+                        break;
 
-                default:
-                    Console.WriteLine("Command not valid, type help for a list of valid commands");
-                    break;
+                    case "shockI":
+                    case "ShockI":
+                        try
+                        {
+                            int enemyNumber = SearchEnemy(separator[1]);
+                            if (enemyNumber != -1)
+                            {
+                                ShockI(enemies[enemyNumber], true);
+                                canDo = true;
+                            }
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Enemy not specified");
+                        }
+                        break;
+
+                    case "darkI":
+                    case "DarkI":
+                        try
+                        {
+                            int enemyNumber = SearchEnemy(separator[1]);
+                            if (enemyNumber != -1)
+                            {
+                                DarkI(enemies[enemyNumber], true);
+                                canDo = true;
+                            }
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Enemy not specified");
+                        }
+                        break;
+
+                    case "lightI":
+                    case "LightI":
+                        try
+                        {
+                            int enemyNumber = SearchEnemy(separator[1]);
+                            if (enemyNumber != -1)
+                            {
+                                LightI(enemies[enemyNumber], true);
+                                canDo = true;
+                            }
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Enemy not specified");
+                        }
+                        break;
+
+                    case "allmightyI":
+                    case "allMightyI":
+                    case "AllMightyI":
+                        try
+                        {
+                            int enemyNumber = SearchEnemy(separator[1]);
+                            if (enemyNumber != -1)
+                            {
+                                AllMightyI(enemies[enemyNumber], true);
+                                canDo = true;
+                            }
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Enemy not specified");
+                        }
+                        break;
+                    case "help":
+                    case "Help":
+                        Console.WriteLine("blunt <TargetID>\nDeals blunt damage to selected target\n\n");
+                        Console.WriteLine("slash <TargetID>\nDeals slashing damage to selected target\n\n");
+                        Console.WriteLine("fireI <TargetID>\nDeals fire damage to selected target\n\n");
+                        Console.WriteLine("iceI <TargetID>\nDeals ice damage to selected target\n\n");
+                        Console.WriteLine("windI <TargetID>\nDeals wind damage to selected target\n\n");
+                        Console.WriteLine("earthI <TargetID>\nDeals earth damage to selected target\n\n");
+                        Console.WriteLine("shockI <TargetID>\nDeals shock damage to selected target\n\n");
+                        Console.WriteLine("darkI <TargetID>\nDeals dark damage to selected target\n\n");
+                        Console.WriteLine("lightI <TargetID>\nDeals light damage to selected target\n\n");
+                        Console.WriteLine("allMightyI <TargetID>\nDeals allMighty damage to selected target.\n" +
+                                          "AllMighty damage can't be blocked\n\n");
+                        Console.WriteLine("help\nWrites this window\n\n");
+                        canDo = false;
+                        break;
+
+                    default:
+                        Console.WriteLine("Command not valid, type help for a list of valid commands");
+                        break;
+                }
             }
+            
             
             return canDo;
         }
@@ -398,42 +418,241 @@ namespace RPG
             Console.Write(" > ");
         }
 
-        static void Main(string[] args)
+        static void ReadBattle(string battleFileName)
         {
-            
-            enemies = new Enemy[3];
-            roundLog = "";    //Aquí se registra todo lo sucedido en una ronda de combate
-            String input;
+            string tempLine;
+            string[] splittedLine;
 
-            int[] tempResistances = new int[10];
-            tempResistances[0] = 0;
-            tempResistances[1] = 0;
-            tempResistances[2] = 0;
-            tempResistances[3] = 0;
-            tempResistances[4] = 0;
-            tempResistances[5] = 0;
-            tempResistances[6] = 0;
-            tempResistances[7] = 0;
-            tempResistances[8] = 0;
-            tempResistances[9] = 0;
-            player = new Player("TestPlayer", 'P', 30, 8, 10, 2, 3, tempResistances);
+            string tempName = "";
+            char tempID = ' ';
+            int tempHP = 0;
+            int tempStrength = 0;
+            int tempIntelligence = 0;
+            int tempPhysResistance = 0;
+            int tempMagResistance = 0;
+            int[] tempElemResistances = new int[10];
+            tempElemResistances[9] = 0;
 
-            for (int i = 0; i < enemies.Length; i++)
+            //Leemos la batalla en cuestión
+            StreamReader battle;
+            battle = new StreamReader(battleFileName);
+
+            int numberOfEnemies = int.Parse(battle.ReadLine());
+            int currentEnemy = 0;
+            enemies = new Enemy[numberOfEnemies];
+            while (!battle.EndOfStream)
             {
-                tempResistances[0] = 0;
-                tempResistances[1] = 0;
-                tempResistances[2] = 0;
-                tempResistances[3] = 0;
-                tempResistances[4] = 0;
-                tempResistances[5] = 0;
-                tempResistances[6] = 0;
-                tempResistances[7] = 0;
-                tempResistances[8] = 0;
-                tempResistances[9] = 0;
-                enemies[i] = new Enemy("Enemy" + i, 'E', 60, 8, 6, 2, 3, tempResistances);
+                tempLine = battle.ReadLine();
+                if (tempLine != "" && tempLine[0] != '/')
+                {
+                    splittedLine = tempLine.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    if (splittedLine[0] == "Player")
+                    {
+                        //Nos aseguramos de que las variables temporales están correctas
+                        tempName = "";
+                        tempID = ' ';
+                        tempHP = 0;
+                        tempStrength = 0;
+                        tempIntelligence = 0;
+                        tempPhysResistance = 0;
+                        tempMagResistance = 0;
+                        tempElemResistances[0] = 0;
+                        tempElemResistances[1] = 0;
+                        tempElemResistances[2] = 0;
+                        tempElemResistances[3] = 0;
+                        tempElemResistances[4] = 0;
+                        tempElemResistances[5] = 0;
+                        tempElemResistances[6] = 0;
+                        tempElemResistances[7] = 0;
+                        tempElemResistances[8] = 0;
+                        tempElemResistances[9] = 0;
+
+                        StreamReader playerFile;
+                        playerFile = new StreamReader(splittedLine[1] + ".txt");
+                        while (!playerFile.EndOfStream)
+                        {
+                            tempLine = playerFile.ReadLine();
+                            if (tempLine != "" && tempLine != "Player" && tempLine[0] != '/')
+                            {
+                                splittedLine = tempLine.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                                if (splittedLine[0] == "Name:")
+                                {
+                                    tempName = splittedLine[1];
+                                }
+                                else if (splittedLine[0] == "ID:")
+                                {
+                                    tempID = char.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "HP:")
+                                {
+                                    tempHP = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Strength:")
+                                {
+                                    tempStrength = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Intelligence:")
+                                {
+                                    tempIntelligence = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "PhysicalResistance:")
+                                {
+                                    tempPhysResistance = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "MagicalResistance:")
+                                {
+                                    tempMagResistance = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Blunt:")
+                                {
+                                    tempElemResistances[0] = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Slashing:")
+                                {
+                                    tempElemResistances[1] = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Fire:")
+                                {
+                                    tempElemResistances[2] = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Ice:")
+                                {
+                                    tempElemResistances[3] = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Wind:")
+                                {
+                                    tempElemResistances[4] = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Earth:")
+                                {
+                                    tempElemResistances[5] = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Shock:")
+                                {
+                                    tempElemResistances[6] = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Dark:")
+                                {
+                                    tempElemResistances[7] = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Light:")
+                                {
+                                    tempElemResistances[8] = int.Parse(splittedLine[1]);
+                                }
+                            }
+                        }
+                        player = new Player(tempName, tempID, tempHP, tempStrength, tempIntelligence, tempPhysResistance, tempMagResistance, tempElemResistances);
+                    }
+                    else
+                    {
+                        StreamReader enemyFile;
+                        enemyFile = new StreamReader(tempLine + ".txt");
+
+                        while (!enemyFile.EndOfStream)
+                        {
+                            tempLine = enemyFile.ReadLine();
+                            if (tempLine != "" && tempLine != "Enemy" && tempLine[0] != '/')
+                            {
+                                splittedLine = tempLine.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                                if (splittedLine[0] == "Name:")
+                                {
+                                    tempName = splittedLine[1];
+                                }
+                                else if (splittedLine[0] == "ID:")
+                                {
+                                    tempID = char.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "HP:")
+                                {
+                                    tempHP = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Strength:")
+                                {
+                                    tempStrength = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Intelligence:")
+                                {
+                                    tempIntelligence = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "PhysicalResistance:")
+                                {
+                                    tempPhysResistance = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "MagicalResistance:")
+                                {
+                                    tempMagResistance = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Blunt:")
+                                {
+                                    tempElemResistances[0] = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Slashing:")
+                                {
+                                    tempElemResistances[1] = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Fire:")
+                                {
+                                    tempElemResistances[2] = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Ice:")
+                                {
+                                    tempElemResistances[3] = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Wind:")
+                                {
+                                    tempElemResistances[4] = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Earth:")
+                                {
+                                    tempElemResistances[5] = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Shock:")
+                                {
+                                    tempElemResistances[6] = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Dark:")
+                                {
+                                    tempElemResistances[7] = int.Parse(splittedLine[1]);
+                                }
+                                else if (splittedLine[0] == "Light:")
+                                {
+                                    tempElemResistances[8] = int.Parse(splittedLine[1]);
+                                }
+                            }
+                        }
+
+                        enemies[currentEnemy] = new Enemy(tempName, tempID, tempHP, tempStrength, tempIntelligence, tempPhysResistance, tempMagResistance, tempElemResistances);
+                        currentEnemy++;
+                    }
+                }
             }
 
-            while (true)
+            //Controlar excepciones
+            
+        }
+
+        static bool enemiesAlive()
+        {
+            bool someoneIsAlive = false;
+            for(int i = 0; i < enemies.Length; i++)
+            {
+                if (enemies[i].IsAlive())
+                {
+                    someoneIsAlive = true;
+                }
+            }
+            return someoneIsAlive;
+        }
+
+        static void Main(string[] args)
+        {
+            roundLog = "";    //Aquí se registra todo lo sucedido en una ronda de combate
+            string input;
+            string battleName = "TestBattle.txt";
+
+            ReadBattle(battleName);
+
+            while (player.IsAlive() && enemiesAlive())
             {
                 //Dibujado
                 Render();
@@ -448,7 +667,16 @@ namespace RPG
                     input = Console.ReadLine();
                 }
             }
-            
+            if (!player.IsAlive())
+            {
+                roundLog += "You died, press Enter to quit the game";
+                Render();
+            }
+            if (!enemiesAlive() && player.IsAlive())
+            {
+                roundLog += "You won! Thanks for playing this demo!\n Press Enter to quit the game";
+                Render();
+            }
 
             Console.ReadLine();
         }
