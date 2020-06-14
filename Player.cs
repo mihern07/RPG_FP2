@@ -92,79 +92,99 @@ namespace Unit
                     break;
                 case TypeOfResistance.blunt:
                     float bluntResistanceQuantity = resistances[GetResistance(element)].quantity;
-                    if (bluntResistanceQuantity <= 100)
+                    if (bluntResistanceQuantity < 100)
                     {
+                        damageTaken -= physicalResistance;
                         if (bluntResistanceQuantity != 0)
                         {
-                            bluntResistanceQuantity /= 100;
+                            bluntResistanceQuantity = 1 - bluntResistanceQuantity / 100;
                             float tempDamage = (float)damageTaken;
                             tempDamage *= bluntResistanceQuantity;
                             damageTaken = (int)tempDamage;
                         }
                         if (damageTaken <= 0)
                             damageTaken = 0;
-                        hp -= (damageTaken - physicalResistance);
+                        hp -= damageTaken;
                         damageLog = (name + " takes " + damageTaken + " " + element + " damage\n");
                     }
                     else
                     {
-                        float bluntDamageRecovery = bluntResistanceQuantity - 100;
-                        if (bluntDamageRecovery != 0)
+                        if (bluntResistanceQuantity != 100)
                         {
-                            bluntDamageRecovery /= 100;
-                            float tempDamage = (float)damageTaken;
-                            tempDamage *= bluntDamageRecovery;
-                            damageTaken = (int)tempDamage;
+                            float bluntDamageRecovery = bluntResistanceQuantity - 100;
+                            if (bluntDamageRecovery != 0)
+                            {
+                                bluntDamageRecovery /= 100;
+                                float tempDamage = (float)damageTaken;
+                                tempDamage *= bluntDamageRecovery;
+                                damageTaken = (int)tempDamage;
+                            }
+                            hp += damageTaken;
+                            if (hp > maxHP)
+                            {
+                                hp = maxHP;
+                            }
+                            damageLog = (name + " heals " + damageTaken + " " + element + " damage\n");
                         }
-                        hp += damageTaken;
-                        if (hp > maxHP)
+                        else
                         {
-                            hp = maxHP;
+                            damageLog = (name + " takes no damage from " + element + "\n");
                         }
-                        damageLog = (name + " heals " + damageTaken + " " + element + " damage\n");
                     }
                     break;
                 case TypeOfResistance.slashing:
                     float slashingResistanceQuantity = resistances[GetResistance(element)].quantity;
-                    if (slashingResistanceQuantity <= 100)
+                    if (slashingResistanceQuantity < 100)
                     {
+                        damageTaken -= physicalResistance;
                         if (slashingResistanceQuantity != 0)
                         {
-                            slashingResistanceQuantity /= 100;
+                            slashingResistanceQuantity = 1 - slashingResistanceQuantity / 100;
                             float tempDamage = (float)damageTaken;
                             tempDamage *= slashingResistanceQuantity;
                             damageTaken = (int)tempDamage;
                         }
+
                         if (damageTaken <= 0)
                             damageTaken = 0;
-                        hp -= (damageTaken - magicalResistance);
+                        hp -= damageTaken;
                         damageLog = (name + " takes " + damageTaken + " " + element + " damage\n");
                     }
                     else
                     {
-                        float slashingDamageRecovery = slashingResistanceQuantity - 100;
-                        if (slashingDamageRecovery != 0)
+                        if (slashingResistanceQuantity != 100)
                         {
-                            slashingDamageRecovery /= 100;
-                            float tempDamage = (float)damageTaken;
-                            tempDamage *= slashingDamageRecovery;
-                            damageTaken = (int)tempDamage;
+                            float slashingDamageRecovery = slashingResistanceQuantity - 100;
+                            if (slashingDamageRecovery != 0)
+                            {
+                                slashingDamageRecovery /= 100;
+                                float tempDamage = (float)damageTaken;
+                                tempDamage *= slashingDamageRecovery;
+                                damageTaken = (int)tempDamage;
+                            }
+                            hp += damageTaken;
+                            if (hp > maxHP)
+                            {
+                                hp = maxHP;
+                            }
+                            damageLog = (name + " heals " + damageTaken + " " + element + " damage\n");
                         }
-                        hp += damageTaken;
-                        if (hp > maxHP)
+                        else
                         {
-                            hp = maxHP;
+                            damageLog = (name + " takes no damage from " + element + "\n");
                         }
-                        damageLog = (name + " heals " + damageTaken + " " + element + " damage\n");
+
                     }
                     break;
+
                 default:
                     float elementResistanceQuantity = resistances[GetResistance(element)].quantity;
-                    if (elementResistanceQuantity <= 100)
+                    if (elementResistanceQuantity < 100)
                     {
+                        damageTaken -= magicalResistance;
                         if (elementResistanceQuantity != 0)
                         {
-                            elementResistanceQuantity /= 100;
+                            elementResistanceQuantity = 1 - elementResistanceQuantity / 100;
                             float tempDamage = (float)damageTaken;
                             tempDamage *= elementResistanceQuantity;
                             damageTaken = (int)tempDamage;
@@ -176,20 +196,27 @@ namespace Unit
                     }
                     else
                     {
-                        float elementDamageRecovery = elementResistanceQuantity - 100;
-                        if (elementDamageRecovery != 0)
+                        if (elementResistanceQuantity != 100)
                         {
-                            elementDamageRecovery /= 100;
-                            float tempDamage = (float)damageTaken;
-                            tempDamage *= elementDamageRecovery;
-                            damageTaken = (int)tempDamage;
+                            float elementDamageRecovery = elementResistanceQuantity - 100;
+                            if (elementDamageRecovery != 0)
+                            {
+                                elementDamageRecovery /= 100;
+                                float tempDamage = (float)damageTaken;
+                                tempDamage *= elementDamageRecovery;
+                                damageTaken = (int)tempDamage;
+                            }
+                            hp += damageTaken;
+                            if (hp > maxHP)
+                            {
+                                hp = maxHP;
+                            }
+                            damageLog = (name + " heals " + damageTaken + " " + element + " damage\n");
                         }
-                        hp += damageTaken;
-                        if (hp > maxHP)
+                        else
                         {
-                            hp = maxHP;
+                            damageLog = (name + " takes no damage from " + element + "\n");
                         }
-                        damageLog = (name + " heals " + damageTaken + " " + element + " damage\n");
                     }
                     break;
             }
@@ -197,18 +224,22 @@ namespace Unit
                 alive = false;
         }
 
+        private int GetResistanceRecursivo(TypeOfResistance element, int act)
+        {
+            if (element == resistances[act].type)
+                return act;
+            else
+                return GetResistanceRecursivo(element, act + 1);
+        }
+
         private int GetResistance(TypeOfResistance element)
         {
-            int contador = 0;
-            while (contador < resistances.Length && resistances[contador].type != element)
-            {
-                contador++;
-            }
-            if (contador >= resistances.Length)
-            {
-                throw new Exception("No se ha encontrado la resistencia");
-            }
-            return contador;
+            return GetResistanceRecursivo(element, 0);
+        }
+
+        public string GetName()
+        {
+            return name;
         }
 
         public char GetID()

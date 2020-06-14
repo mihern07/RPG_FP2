@@ -16,6 +16,7 @@ namespace Unit
         int physicalResistance;
         int magicalResistance;
 
+        TypeOfResistance primaryElement;
 
         //Resistencias del enemigo
         ResistanceType[] resistances = new ResistanceType[10];
@@ -26,6 +27,11 @@ namespace Unit
         public enum TypeOfResistance
         {
             blunt, slashing, fire, ice, wind, earth, shock, dark, light, allMighty
+        }
+
+        public enum Skill
+        {
+            Blunt, Slash, FireI, IceI, WindI, EarthI, ShockI, DarkI, LightI, AllMightyI
         }
 
         /// <summary>
@@ -47,7 +53,7 @@ namespace Unit
         /// Vector que contiene todas lsa resistencias a asignar (excluyendo allMighty) en el siguiente orden:
         /// blunt, slashing, fire, ice, wind, earth, shock, dark, light</param>
         public Enemy(string unitName, char unitID, int unitHP, int unitStrength, int unitIntelligence,
-            int unitPhysicalResistance, int unitMagicalResistance, int [] resistanceValues)
+            int unitPhysicalResistance, int unitMagicalResistance, int [] resistanceValues, string mainElement)
         {
             name = unitName;
             ID = unitID;
@@ -58,7 +64,57 @@ namespace Unit
             intelligence = unitIntelligence;
             physicalResistance = unitPhysicalResistance;
             magicalResistance = unitMagicalResistance;
-            
+            switch (mainElement)
+            {
+                case "Slash":
+                case "slash":
+                    primaryElement = TypeOfResistance.slashing;
+                    break;
+                case "Blunt":
+                case "blunt":
+                    primaryElement = TypeOfResistance.blunt;
+                    break;
+                case "Fire":
+                case "fire":
+                    primaryElement = TypeOfResistance.fire;
+                    break;
+                case "Ice":
+                case "ice":
+                    primaryElement = TypeOfResistance.ice;
+                    break;
+                case "Wind":
+                case "wind":
+                    primaryElement = TypeOfResistance.wind;
+                    break;
+                case "Earth":
+                case "earth":
+                    primaryElement = TypeOfResistance.fire;
+                    break;
+                case "Shock":
+                case "shock":
+                    primaryElement = TypeOfResistance.shock;
+                    break;
+                case "Dark":
+                case "dark":
+                    primaryElement = TypeOfResistance.dark;
+                    break;
+                case "Light":
+                case "light":
+                    primaryElement = TypeOfResistance.light;
+                    break;
+                case "AllMighty":
+                case "allMighty":
+                case "Allmighty":
+                case "allmighty":
+                    primaryElement = TypeOfResistance.allMighty;
+                    break;
+                default:
+                    throw new Exception(name + " element not recognized. Supported element types are:\n" +
+                        "blunt, slash, fire, ice, wind, earth, shock, dark, light, allMighty\n" +
+                        "Please ensure that: Element: <DesiredElement> appears in the "+ name + ".txt file\n" +
+                        "Desired enemy was changed to a default enemy as a result");
+            }
+
             ChangeResistances(resistanceValues);
 
             //Asignamos aparte la resistencia a allMighty que siempre es 0
@@ -93,16 +149,16 @@ namespace Unit
                     break;
                 case TypeOfResistance.blunt:
                     float bluntResistanceQuantity = resistances[GetResistance(element)].quantity;
-                    if (bluntResistanceQuantity <= 100)
+                    if (bluntResistanceQuantity < 100)
                     {
+                        damageTaken -= physicalResistance;
                         if (bluntResistanceQuantity != 0)
                         {
-                            bluntResistanceQuantity /= 100;
+                            bluntResistanceQuantity = 1 - bluntResistanceQuantity / 100;
                             float tempDamage = (float)damageTaken;
                             tempDamage *= bluntResistanceQuantity;
                             damageTaken = (int)tempDamage;
                         }
-                        damageTaken -= physicalResistance;
                         if (damageTaken <= 0)
                             damageTaken = 0;
                         hp -= damageTaken;
@@ -110,35 +166,42 @@ namespace Unit
                     }
                     else
                     {
-                        float bluntDamageRecovery = bluntResistanceQuantity - 100;
-                        if (bluntDamageRecovery != 0)
+                        if (bluntResistanceQuantity != 100)
                         {
-                            bluntDamageRecovery /= 100;
-                            float tempDamage = (float)damageTaken;
-                            tempDamage *= bluntDamageRecovery;
-                            damageTaken = (int)tempDamage;
+                            float bluntDamageRecovery = bluntResistanceQuantity - 100;
+                            if (bluntDamageRecovery != 0)
+                            {
+                                bluntDamageRecovery /= 100;
+                                float tempDamage = (float)damageTaken;
+                                tempDamage *= bluntDamageRecovery;
+                                damageTaken = (int)tempDamage;
+                            }
+                            hp += damageTaken;
+                            if (hp > maxHP)
+                            {
+                                hp = maxHP;
+                            }
+                            damageLog = (name + " heals " + damageTaken + " " + element + " damage\n");
                         }
-                        hp += damageTaken;
-                        if (hp > maxHP)
+                        else
                         {
-                            hp = maxHP;
+                            damageLog = (name + " takes no damage from " + element + "\n");
                         }
-                        damageLog = (name + " heals " + damageTaken + " " + element + " damage\n");
                     }
                     break;
                 case TypeOfResistance.slashing:
                     float slashingResistanceQuantity = resistances[GetResistance(element)].quantity;
-                    if (slashingResistanceQuantity <= 100)
+                    if (slashingResistanceQuantity < 100)
                     {
+                        damageTaken -= physicalResistance;
                         if (slashingResistanceQuantity != 0)
                         {
-                            slashingResistanceQuantity /= 100;
+                            slashingResistanceQuantity = 1 - slashingResistanceQuantity / 100;
                             float tempDamage = (float)damageTaken;
                             tempDamage *= slashingResistanceQuantity;
                             damageTaken = (int)tempDamage;
                         }
                             
-                        damageTaken -= magicalResistance;
                         if (damageTaken <= 0)
                             damageTaken = 0;
                         hp -= damageTaken;
@@ -146,30 +209,39 @@ namespace Unit
                     }
                     else
                     {
-                        float slashingDamageRecovery = slashingResistanceQuantity - 100;
-                        if (slashingDamageRecovery != 0)
+                        if(slashingResistanceQuantity != 100)
                         {
-                            slashingDamageRecovery /= 100;
-                            float tempDamage = (float)damageTaken;
-                            tempDamage *= slashingDamageRecovery;
-                            damageTaken = (int)tempDamage;
+                            float slashingDamageRecovery = slashingResistanceQuantity - 100;
+                            if (slashingDamageRecovery != 0)
+                            {
+                                slashingDamageRecovery /= 100;
+                                float tempDamage = (float)damageTaken;
+                                tempDamage *= slashingDamageRecovery;
+                                damageTaken = (int)tempDamage;
+                            }
+                            hp += damageTaken;
+                            if (hp > maxHP)
+                            {
+                                hp = maxHP;
+                            }
+                            damageLog = (name + " heals " + damageTaken + " " + element + " damage\n");
                         }
-                        hp += damageTaken;
-                        if (hp > maxHP)
+                        else
                         {
-                            hp = maxHP;
+                            damageLog = (name + " takes no damage from " + element + "\n");
                         }
-                        damageLog = (name + " heals " + damageTaken + " " + element + " damage\n");
+                        
                     }
                     break;
 
                 default:
                     float elementResistanceQuantity = resistances[GetResistance(element)].quantity;
-                    if (elementResistanceQuantity <= 100)
+                    if (elementResistanceQuantity < 100)
                     {
+                        damageTaken -= magicalResistance;
                         if (elementResistanceQuantity != 0)
                         {
-                            elementResistanceQuantity /= 100;
+                            elementResistanceQuantity = 1 - elementResistanceQuantity / 100;
                             float tempDamage = (float)damageTaken;
                             tempDamage *= elementResistanceQuantity;
                             damageTaken = (int)tempDamage;
@@ -181,20 +253,27 @@ namespace Unit
                     }
                     else
                     {
-                        float elementDamageRecovery = elementResistanceQuantity - 100;
-                        if (elementDamageRecovery != 0)
+                        if (elementResistanceQuantity != 100)
                         {
-                            elementDamageRecovery /= 100;
-                            float tempDamage = (float)damageTaken;
-                            tempDamage *= elementDamageRecovery;
-                            damageTaken = (int)tempDamage;
+                            float elementDamageRecovery = elementResistanceQuantity - 100;
+                            if (elementDamageRecovery != 0)
+                            {
+                                elementDamageRecovery /= 100;
+                                float tempDamage = (float)damageTaken;
+                                tempDamage *= elementDamageRecovery;
+                                damageTaken = (int)tempDamage;
+                            }
+                            hp += damageTaken;
+                            if (hp > maxHP)
+                            {
+                                hp = maxHP;
+                            }
+                            damageLog = (name + " heals " + damageTaken + " " + element + " damage\n");
                         }
-                        hp += damageTaken;
-                        if (hp > maxHP)
+                        else
                         {
-                            hp = maxHP;
+                            damageLog = (name + " takes no damage from " + element + "\n");
                         }
-                        damageLog = (name + " heals " + damageTaken + " " + element + " damage\n");
                     }
                     break;
             }
@@ -204,18 +283,134 @@ namespace Unit
             }
         }
 
+        private int GetResistanceRecursivo(TypeOfResistance element, int act)
+        {
+            if (element == resistances[act].type)
+                return act;
+            else
+                return GetResistanceRecursivo(element, act + 1);
+        }
+
         private int GetResistance(TypeOfResistance element)
         {
-            int contador = 0;
-            while(contador<resistances.Length && resistances[contador].type != element)
+            return GetResistanceRecursivo(element, 0);
+        }
+
+        public Skill DecideAction()
+        {
+            Random randomAction;
+            randomAction = new Random();
+            int chance = randomAction.Next(0, 101);
+            Skill decidedAction = Skill.Blunt;
+            switch (primaryElement)
             {
-                contador++;
+                case TypeOfResistance.blunt:
+                    if (chance > 30)
+                    {
+                        decidedAction = Skill.Blunt;
+                    }
+                    else
+                    {
+                        decidedAction = Skill.Slash;
+                    }
+                    break;
+                case TypeOfResistance.slashing:
+                    if (chance > 30)
+                    {
+                        decidedAction = Skill.Slash;
+                    }
+                    else
+                    {
+                        decidedAction = Skill.Blunt;
+                    }
+                    break;
+                case TypeOfResistance.fire:
+                    if (chance > 30)
+                    {
+                        decidedAction = Skill.FireI;
+                    }
+                    else
+                    {
+                        decidedAction = Skill.DarkI;
+                    }
+                    break;
+                case TypeOfResistance.ice:
+                    if (chance > 30)
+                    {
+                        decidedAction = Skill.IceI;
+                    }
+                    else
+                    {
+                        decidedAction = Skill.LightI;
+                    }
+                    break;
+                case TypeOfResistance.wind:
+                    if (chance > 30)
+                    {
+                        decidedAction = Skill.WindI;
+                    }
+                    else
+                    {
+                        decidedAction = Skill.Slash;
+                    }
+                    break;
+                case TypeOfResistance.earth:
+                    if (chance > 30)
+                    {
+                        decidedAction = Skill.EarthI;
+                    }
+                    else
+                    {
+                        decidedAction = Skill.Blunt;
+                    }
+                    break;
+                case TypeOfResistance.shock:
+                    if (chance > 30)
+                    {
+                        decidedAction = Skill.ShockI;
+                    }
+                    else
+                    {
+                        decidedAction = Skill.AllMightyI;
+                    }
+                    break;
+                case TypeOfResistance.dark:
+                    if (chance > 30)
+                    {
+                        decidedAction = Skill.DarkI;
+                    }
+                    else
+                    {
+                        decidedAction = Skill.Slash;
+                    }
+                    break;
+                case TypeOfResistance.light:
+                    if (chance > 30)
+                    {
+                        decidedAction = Skill.LightI;
+                    }
+                    else
+                    {
+                        decidedAction = Skill.Blunt;
+                    }
+                    break;
+                case TypeOfResistance.allMighty:
+                    if (chance > 30)
+                    {
+                        decidedAction = Skill.AllMightyI;
+                    }
+                    else
+                    {
+                        decidedAction = Skill.Slash;
+                    }
+                    break;
             }
-            if (contador >= resistances.Length)
-            {
-                throw new Exception("No se ha encontrado la resistencia");
-            }
-            return contador;
+            return decidedAction;
+        }
+
+        public string GetName()
+        {
+            return name;
         }
 
         public char GetID()

@@ -240,13 +240,15 @@ namespace RPG
         {
             if (playerIsAtaquer)
             {
+                roundLog += player.GetName() + " uses Blunt on " + enemy.GetName() + "\n";
                 enemy.TakeDamage(player.GetStrength(), Enemy.TypeOfResistance.blunt, out damageLog);
-                roundLog += damageLog;
+                roundLog += damageLog + "\n";
             }
             else
             {
+                roundLog += enemy.GetName() + " uses Blunt on " + player.GetName() + "\n";
                 player.TakeDamage(enemy.GetStrength(), Player.TypeOfResistance.blunt, out damageLog);
-                roundLog += damageLog;
+                roundLog += damageLog + "\n";
             }
         }
 
@@ -254,13 +256,15 @@ namespace RPG
         {
             if (playerIsAtaquer)
             {
+                roundLog += player.GetName() + " uses Slash on " + enemy.GetName() + "\n";
                 enemy.TakeDamage(player.GetStrength(), Enemy.TypeOfResistance.slashing, out damageLog);
-                roundLog += damageLog;
+                roundLog += damageLog + "\n";
             }
             else
             {
+                roundLog += enemy.GetName() + " uses Slash on " + player.GetName() + "\n";
                 player.TakeDamage(enemy.GetStrength(), Player.TypeOfResistance.slashing, out damageLog);
-                roundLog += damageLog;
+                roundLog += damageLog + "\n";
             }
         }
 
@@ -268,13 +272,15 @@ namespace RPG
         {
             if (playerIsAtaquer)
             {
+                roundLog += player.GetName() + " uses FireI on " + enemy.GetName() + "\n";
                 enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.fire, out damageLog);
-                roundLog += damageLog;
+                roundLog += damageLog + "\n";
             }
             else
             {
+                roundLog += enemy.GetName() + " uses FireI on " + player.GetName() + "\n";
                 player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.fire, out damageLog);
-                roundLog += damageLog;
+                roundLog += damageLog + "\n";
             }
         }
 
@@ -282,13 +288,15 @@ namespace RPG
         {
             if (playerIsAtaquer)
             {
+                roundLog += player.GetName() + " uses IceI on " + enemy.GetName() + "\n";
                 enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.ice, out damageLog);
-                roundLog += damageLog;
+                roundLog += damageLog + "\n";
             }
             else
             {
+                roundLog += enemy.GetName() + " uses IceI on " + player.GetName() + "\n";
                 player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.ice, out damageLog);
-                roundLog += damageLog;
+                roundLog += damageLog + "\n";
             }
         }
 
@@ -296,13 +304,15 @@ namespace RPG
         {
             if (playerIsAtaquer)
             {
+                roundLog += player.GetName() + " uses WindI on " + enemy.GetName() + "\n";
                 enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.wind, out damageLog);
-                roundLog += damageLog;
+                roundLog += damageLog + "\n";
             }
             else
             {
+                roundLog += enemy.GetName() + " uses WindI on " + player.GetName() + "\n";
                 player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.wind, out damageLog);
-                roundLog += damageLog;
+                roundLog += damageLog + "\n";
             }
         }
 
@@ -310,13 +320,15 @@ namespace RPG
         {
             if (playerIsAtaquer)
             {
+                roundLog += player.GetName() + " uses EarthI on " + enemy.GetName() + "\n";
                 enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.earth, out damageLog);
-                roundLog += damageLog;
+                roundLog += damageLog + "\n";
             }
             else
             {
+                roundLog += enemy.GetName() + " uses EarthI on " + player.GetName() + "\n";
                 player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.earth, out damageLog);
-                roundLog += damageLog;
+                roundLog += damageLog + "\n";
             }
         }
 
@@ -324,13 +336,15 @@ namespace RPG
         {
             if (playerIsAtaquer)
             {
+                roundLog += player.GetName() + " uses ShockI on " + enemy.GetName() + "\n";
                 enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.shock, out damageLog);
-                roundLog += damageLog;
+                roundLog += damageLog + "\n";
             }
             else
             {
+                roundLog += enemy.GetName() + " uses ShockI on " + player.GetName() + "\n";
                 player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.shock, out damageLog);
-                roundLog += damageLog;
+                roundLog += damageLog + "\n";
             }
         }
 
@@ -338,13 +352,15 @@ namespace RPG
         {
             if (playerIsAtaquer)
             {
+                roundLog += player.GetName() + " uses DarkI on " + enemy.GetName() + "\n";
                 enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.dark, out damageLog);
-                roundLog += damageLog;
+                roundLog += damageLog + "\n";
             }
             else
             {
+                roundLog += enemy.GetName() + " uses DarkI on " + player.GetName() + "\n";
                 player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.dark, out damageLog);
-                roundLog += damageLog;
+                roundLog += damageLog + "\n";
             }
         }
 
@@ -352,13 +368,15 @@ namespace RPG
         {
             if (playerIsAtaquer)
             {
+                roundLog += player.GetName() + " uses LightI on " + enemy.GetName() + "\n";
                 enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.light, out damageLog);
-                roundLog += damageLog;
+                roundLog += damageLog + "\n";
             }
             else
             {
+                roundLog += enemy.GetName() + " uses LightI on " + player.GetName() + "\n";
                 player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.light, out damageLog);
-                roundLog += damageLog;
+                roundLog += damageLog + "\n";
             }
         }
 
@@ -366,13 +384,15 @@ namespace RPG
         {
             if (playerIsAtaquer)
             {
+                roundLog += player.GetName() + " uses AllMightyI on " + enemy.GetName() + "\n";
                 enemy.TakeDamage(player.GetIntelligence(), Enemy.TypeOfResistance.allMighty, out damageLog);
-                roundLog += damageLog;
+                roundLog += damageLog + "\n";
             }
             else
             {
+                roundLog += enemy.GetName() + " uses AllMightyI on " + player.GetName() + "\n";
                 player.TakeDamage(enemy.GetIntelligence(), Player.TypeOfResistance.allMighty, out damageLog);
-                roundLog += damageLog;
+                roundLog += damageLog + "\n";
             }
         }
 
@@ -387,13 +407,19 @@ namespace RPG
             Console.Write("      ");
             for (int i = 0; i < enemies.Length; i++)
             {
-                Console.Write(enemies[i].GetID() + "          ");
+                if (enemies[i].IsAlive())
+                    Console.Write(enemies[i].GetID() + "          ");
+                else
+                    Console.Write("           ");
             }
             Console.WriteLine();
             Console.Write("   ");
             for (int i = 0; i < enemies.Length; i++)
             {
-                Console.Write(enemies[i].GetHP() + "/" + enemies[i].GetMaxHP() + "HP    ");
+                if (enemies[i].IsAlive())
+                    Console.Write(enemies[i].GetHP() + "/" + enemies[i].GetMaxHP() + "HP    ");
+                else
+                    Console.Write("           ");
             }
 
 
@@ -426,206 +452,236 @@ namespace RPG
             string tempName = "";
             char tempID = ' ';
             int tempHP = 0;
+            string tempElement = "";
             int tempStrength = 0;
             int tempIntelligence = 0;
             int tempPhysResistance = 0;
             int tempMagResistance = 0;
             int[] tempElemResistances = new int[10];
             tempElemResistances[9] = 0;
-
-            //Leemos la batalla en cuestión
-            StreamReader battle;
-            battle = new StreamReader(battleFileName);
-
-            int numberOfEnemies = int.Parse(battle.ReadLine());
-            int currentEnemy = 0;
-            enemies = new Enemy[numberOfEnemies];
-            while (!battle.EndOfStream)
+            try
             {
-                tempLine = battle.ReadLine();
-                if (tempLine != "" && tempLine[0] != '/')
+                //Leemos la batalla en cuestión
+                StreamReader battle;
+                battle = new StreamReader(battleFileName);
+
+                int numberOfEnemies = int.Parse(battle.ReadLine());
+                int currentEnemy = 0;
+                enemies = new Enemy[numberOfEnemies];
+                while (!battle.EndOfStream)
                 {
-                    splittedLine = tempLine.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                    if (splittedLine[0] == "Player")
+                    tempLine = battle.ReadLine();
+                    if (tempLine != "" && tempLine[0] != '/')
                     {
-                        //Nos aseguramos de que las variables temporales están correctas
-                        tempName = "";
-                        tempID = ' ';
-                        tempHP = 0;
-                        tempStrength = 0;
-                        tempIntelligence = 0;
-                        tempPhysResistance = 0;
-                        tempMagResistance = 0;
-                        tempElemResistances[0] = 0;
-                        tempElemResistances[1] = 0;
-                        tempElemResistances[2] = 0;
-                        tempElemResistances[3] = 0;
-                        tempElemResistances[4] = 0;
-                        tempElemResistances[5] = 0;
-                        tempElemResistances[6] = 0;
-                        tempElemResistances[7] = 0;
-                        tempElemResistances[8] = 0;
-                        tempElemResistances[9] = 0;
-
-                        StreamReader playerFile;
-                        playerFile = new StreamReader(splittedLine[1] + ".txt");
-                        while (!playerFile.EndOfStream)
+                        splittedLine = tempLine.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                        if (splittedLine[0] == "Player")
                         {
-                            tempLine = playerFile.ReadLine();
-                            if (tempLine != "" && tempLine != "Player" && tempLine[0] != '/')
+                            //Nos aseguramos de que las variables temporales están correctas
+                            tempName = "";
+                            tempID = ' ';
+                            tempHP = 0;
+                            tempElement = "";
+                            tempStrength = 0;
+                            tempIntelligence = 0;
+                            tempPhysResistance = 0;
+                            tempMagResistance = 0;
+                            tempElemResistances[0] = 0;
+                            tempElemResistances[1] = 0;
+                            tempElemResistances[2] = 0;
+                            tempElemResistances[3] = 0;
+                            tempElemResistances[4] = 0;
+                            tempElemResistances[5] = 0;
+                            tempElemResistances[6] = 0;
+                            tempElemResistances[7] = 0;
+                            tempElemResistances[8] = 0;
+                            tempElemResistances[9] = 0;
+
+                            StreamReader playerFile;
+                            playerFile = new StreamReader(splittedLine[1] + ".txt");
+                            while (!playerFile.EndOfStream)
                             {
-                                splittedLine = tempLine.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                                if (splittedLine[0] == "Name:")
+                                tempLine = playerFile.ReadLine();
+                                if (tempLine != "" && tempLine != "Player" && tempLine[0] != '/')
                                 {
-                                    tempName = splittedLine[1];
-                                }
-                                else if (splittedLine[0] == "ID:")
-                                {
-                                    tempID = char.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "HP:")
-                                {
-                                    tempHP = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Strength:")
-                                {
-                                    tempStrength = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Intelligence:")
-                                {
-                                    tempIntelligence = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "PhysicalResistance:")
-                                {
-                                    tempPhysResistance = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "MagicalResistance:")
-                                {
-                                    tempMagResistance = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Blunt:")
-                                {
-                                    tempElemResistances[0] = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Slashing:")
-                                {
-                                    tempElemResistances[1] = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Fire:")
-                                {
-                                    tempElemResistances[2] = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Ice:")
-                                {
-                                    tempElemResistances[3] = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Wind:")
-                                {
-                                    tempElemResistances[4] = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Earth:")
-                                {
-                                    tempElemResistances[5] = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Shock:")
-                                {
-                                    tempElemResistances[6] = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Dark:")
-                                {
-                                    tempElemResistances[7] = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Light:")
-                                {
-                                    tempElemResistances[8] = int.Parse(splittedLine[1]);
+                                    splittedLine = tempLine.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                                    if (splittedLine[0] == "Name:")
+                                    {
+                                        tempName = splittedLine[1];
+                                    }
+                                    else if (splittedLine[0] == "ID:")
+                                    {
+                                        tempID = char.Parse(splittedLine[1]);
+                                    }
+                                    else if (splittedLine[0] == "HP:")
+                                    {
+                                        tempHP = int.Parse(splittedLine[1]);
+                                    }
+                                    else if (splittedLine[0] == "Strength:")
+                                    {
+                                        tempStrength = int.Parse(splittedLine[1]);
+                                    }
+                                    else if (splittedLine[0] == "Intelligence:")
+                                    {
+                                        tempIntelligence = int.Parse(splittedLine[1]);
+                                    }
+                                    else if (splittedLine[0] == "PhysicalResistance:")
+                                    {
+                                        tempPhysResistance = int.Parse(splittedLine[1]);
+                                    }
+                                    else if (splittedLine[0] == "MagicalResistance:")
+                                    {
+                                        tempMagResistance = int.Parse(splittedLine[1]);
+                                    }
+                                    else if (splittedLine[0] == "Blunt:")
+                                    {
+                                        tempElemResistances[0] = int.Parse(splittedLine[1]);
+                                    }
+                                    else if (splittedLine[0] == "Slashing:")
+                                    {
+                                        tempElemResistances[1] = int.Parse(splittedLine[1]);
+                                    }
+                                    else if (splittedLine[0] == "Fire:")
+                                    {
+                                        tempElemResistances[2] = int.Parse(splittedLine[1]);
+                                    }
+                                    else if (splittedLine[0] == "Ice:")
+                                    {
+                                        tempElemResistances[3] = int.Parse(splittedLine[1]);
+                                    }
+                                    else if (splittedLine[0] == "Wind:")
+                                    {
+                                        tempElemResistances[4] = int.Parse(splittedLine[1]);
+                                    }
+                                    else if (splittedLine[0] == "Earth:")
+                                    {
+                                        tempElemResistances[5] = int.Parse(splittedLine[1]);
+                                    }
+                                    else if (splittedLine[0] == "Shock:")
+                                    {
+                                        tempElemResistances[6] = int.Parse(splittedLine[1]);
+                                    }
+                                    else if (splittedLine[0] == "Dark:")
+                                    {
+                                        tempElemResistances[7] = int.Parse(splittedLine[1]);
+                                    }
+                                    else if (splittedLine[0] == "Light:")
+                                    {
+                                        tempElemResistances[8] = int.Parse(splittedLine[1]);
+                                    }
                                 }
                             }
+                            player = new Player(tempName, tempID, tempHP, tempStrength, tempIntelligence, tempPhysResistance, tempMagResistance, tempElemResistances);
                         }
-                        player = new Player(tempName, tempID, tempHP, tempStrength, tempIntelligence, tempPhysResistance, tempMagResistance, tempElemResistances);
-                    }
-                    else
-                    {
-                        StreamReader enemyFile;
-                        enemyFile = new StreamReader(tempLine + ".txt");
-
-                        while (!enemyFile.EndOfStream)
+                        else
                         {
-                            tempLine = enemyFile.ReadLine();
-                            if (tempLine != "" && tempLine != "Enemy" && tempLine[0] != '/')
+                            try
                             {
-                                splittedLine = tempLine.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                                if (splittedLine[0] == "Name:")
+                                StreamReader enemyFile;
+                                enemyFile = new StreamReader(tempLine + ".txt");
+
+                                while (!enemyFile.EndOfStream)
                                 {
-                                    tempName = splittedLine[1];
-                                }
-                                else if (splittedLine[0] == "ID:")
-                                {
-                                    tempID = char.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "HP:")
-                                {
-                                    tempHP = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Strength:")
-                                {
-                                    tempStrength = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Intelligence:")
-                                {
-                                    tempIntelligence = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "PhysicalResistance:")
-                                {
-                                    tempPhysResistance = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "MagicalResistance:")
-                                {
-                                    tempMagResistance = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Blunt:")
-                                {
-                                    tempElemResistances[0] = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Slashing:")
-                                {
-                                    tempElemResistances[1] = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Fire:")
-                                {
-                                    tempElemResistances[2] = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Ice:")
-                                {
-                                    tempElemResistances[3] = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Wind:")
-                                {
-                                    tempElemResistances[4] = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Earth:")
-                                {
-                                    tempElemResistances[5] = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Shock:")
-                                {
-                                    tempElemResistances[6] = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Dark:")
-                                {
-                                    tempElemResistances[7] = int.Parse(splittedLine[1]);
-                                }
-                                else if (splittedLine[0] == "Light:")
-                                {
-                                    tempElemResistances[8] = int.Parse(splittedLine[1]);
+                                    tempLine = enemyFile.ReadLine();
+                                    if (tempLine != "" && tempLine != "Enemy" && tempLine[0] != '/')
+                                    {
+                                        splittedLine = tempLine.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                                        if (splittedLine[0] == "Name:")
+                                        {
+                                            tempName = splittedLine[1];
+                                        }
+                                        else if (splittedLine[0] == "ID:")
+                                        {
+                                            tempID = char.Parse(splittedLine[1]);
+                                        }
+                                        else if (splittedLine[0] == "HP:")
+                                        {
+                                            tempHP = int.Parse(splittedLine[1]);
+                                        }else if(splittedLine[0] == "Element:")
+                                        {
+                                            tempElement = splittedLine[1];
+                                        }
+                                        else if (splittedLine[0] == "Strength:")
+                                        {
+                                            tempStrength = int.Parse(splittedLine[1]);
+                                        }
+                                        else if (splittedLine[0] == "Intelligence:")
+                                        {
+                                            tempIntelligence = int.Parse(splittedLine[1]);
+                                        }
+                                        else if (splittedLine[0] == "PhysicalResistance:")
+                                        {
+                                            tempPhysResistance = int.Parse(splittedLine[1]);
+                                        }
+                                        else if (splittedLine[0] == "MagicalResistance:")
+                                        {
+                                            tempMagResistance = int.Parse(splittedLine[1]);
+                                        }
+                                        else if (splittedLine[0] == "Blunt:")
+                                        {
+                                            tempElemResistances[0] = int.Parse(splittedLine[1]);
+                                        }
+                                        else if (splittedLine[0] == "Slashing:")
+                                        {
+                                            tempElemResistances[1] = int.Parse(splittedLine[1]);
+                                        }
+                                        else if (splittedLine[0] == "Fire:")
+                                        {
+                                            tempElemResistances[2] = int.Parse(splittedLine[1]);
+                                        }
+                                        else if (splittedLine[0] == "Ice:")
+                                        {
+                                            tempElemResistances[3] = int.Parse(splittedLine[1]);
+                                        }
+                                        else if (splittedLine[0] == "Wind:")
+                                        {
+                                            tempElemResistances[4] = int.Parse(splittedLine[1]);
+                                        }
+                                        else if (splittedLine[0] == "Earth:")
+                                        {
+                                            tempElemResistances[5] = int.Parse(splittedLine[1]);
+                                        }
+                                        else if (splittedLine[0] == "Shock:")
+                                        {
+                                            tempElemResistances[6] = int.Parse(splittedLine[1]);
+                                        }
+                                        else if (splittedLine[0] == "Dark:")
+                                        {
+                                            tempElemResistances[7] = int.Parse(splittedLine[1]);
+                                        }
+                                        else if (splittedLine[0] == "Light:")
+                                        {
+                                            tempElemResistances[8] = int.Parse(splittedLine[1]);
+                                        }
+                                    }
                                 }
                             }
-                        }
+                            catch
+                            {
+                                Console.WriteLine("Enemy file not found.\n" +
+                                                  "Enemy file must have the same name specified in the battle file.");
+                            }
 
-                        enemies[currentEnemy] = new Enemy(tempName, tempID, tempHP, tempStrength, tempIntelligence, tempPhysResistance, tempMagResistance, tempElemResistances);
-                        currentEnemy++;
+                            try
+                            {
+                                enemies[currentEnemy] = new Enemy(tempName, tempID, tempHP, tempStrength, tempIntelligence, tempPhysResistance, tempMagResistance, tempElemResistances, tempElement);
+                                currentEnemy++;
+                            }
+                            catch(Exception e)
+                            {
+                                Console.WriteLine(e.Message);
+                                enemies[currentEnemy] = new Enemy("Default", 'D', 50, 8, 6, 3, 2, tempElemResistances, "slash");
+                                currentEnemy++;
+                            }
+                        }
                     }
                 }
             }
+            catch
+            {
+                Console.WriteLine("Battle file not found.\nPlease close the program and ensure that TestBattle is in the correct folder");
+            }
+
+            
 
             //Controlar excepciones
             
@@ -644,6 +700,61 @@ namespace RPG
             return someoneIsAlive;
         }
 
+        static void EnemiesAttackRound()
+        {
+            EnemyAttack(0);
+        }
+
+        static bool EnemyAttack (int act)
+        {
+            if (act == enemies.Length)
+                return true;
+            else
+            {
+                if (enemies[act].IsAlive())
+                {
+                    Enemy.Skill skill;
+                    skill = enemies[act].DecideAction();
+                    switch (skill)
+                    {
+                        case Enemy.Skill.Blunt:
+                            Blunt(enemies[act], false);
+                            break;
+                        case Enemy.Skill.Slash:
+                            Slash(enemies[act], false);
+                            break;
+                        case Enemy.Skill.FireI:
+                            FireI(enemies[act], false);
+                            break;
+                        case Enemy.Skill.IceI:
+                            IceI(enemies[act], false);
+                            break;
+                        case Enemy.Skill.WindI:
+                            WindI(enemies[act], false);
+                            break;
+                        case Enemy.Skill.EarthI:
+                            EarthI(enemies[act], false);
+                            break;
+                        case Enemy.Skill.ShockI:
+                            ShockI(enemies[act], false);
+                            break;
+                        case Enemy.Skill.DarkI:
+                            DarkI(enemies[act], false);
+                            break;
+                        case Enemy.Skill.LightI:
+                            LightI(enemies[act], false);
+                            break;
+                        case Enemy.Skill.AllMightyI:
+                            AllMightyI(enemies[act], false);
+                            break;
+                    }
+                }
+                act++;
+                return EnemyAttack(act);
+            }
+            
+        }
+
         static void Main(string[] args)
         {
             roundLog = "";    //Aquí se registra todo lo sucedido en una ronda de combate
@@ -651,6 +762,26 @@ namespace RPG
             string battleName = "TestBattle.txt";
 
             ReadBattle(battleName);
+
+            Console.WriteLine("Welcome to RPG Battle Simulator\n\n" +
+                "This is a RPG battle simulator and as such\n" +
+                "it's pretended for developer use in creating\n" +
+                "unique battles and encounters.\n\n" +
+                "In this simulation you will have to battle 3 different enemies,\n" +
+                "to win you have to defeat them before they kill you.\n\n" +
+                "To attack an enemy use one of your skills typing\n" +
+                "one of the available commands in the console.\n" +
+                "You can see the full list of commands typing: help\n\n" +
+                "Be aware that in this world both you and your enemies posess resistances.\n" +
+                "This means that some enemies receive more damage with some attacks\n" +
+                "but receive less with others.\n" +
+                "You also have resistances that must take advantage on.\n" +
+                "Resistances are hidden from view and you must make use\n" +
+                "of them to make the perfect plan to defeat them all in time.\n\n" +
+                "I wish you good luck\n" +
+                "Press Enter to continue");
+
+            Console.ReadLine();
 
             while (player.IsAlive() && enemiesAlive())
             {
@@ -666,6 +797,8 @@ namespace RPG
                     Console.Write(" > ");
                     input = Console.ReadLine();
                 }
+
+                EnemiesAttackRound();
             }
             if (!player.IsAlive())
             {
